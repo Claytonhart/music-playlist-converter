@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function getYoutubeListOfPlaylists(accessToken) {
+export default async function getNapsterListOfPlaylists(accessToken) {
   const config = {
     headers: {
       Authorization: `Bearer ${accessToken}`

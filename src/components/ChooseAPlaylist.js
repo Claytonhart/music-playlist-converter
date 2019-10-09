@@ -6,6 +6,7 @@ import PlaylistsList from "./PlaylistsList";
 import getSpotifyListOfPlaylists from "../apis/spotify/getSpotifyListOfPlaylists";
 import getYoutubeListOfPlaylists from "../apis/youtube/getYoutubeListOfPlaylists";
 import getNapsterListOfPlaylists from "../apis/napster/getNapsterListOfPlaylists";
+import getDeezerListOfPlaylists from "../apis/deezer/getDeezerListOfPlaylists";
 
 const ChooseAPlaylist = ({ initialPlaylist, finalPlaylist, playlistId }) => {
   const [listOfPlaylists, setListOfPlaylists] = useState([]);
@@ -30,6 +31,10 @@ const ChooseAPlaylist = ({ initialPlaylist, finalPlaylist, playlistId }) => {
           setListOfPlaylists(playlists);
         });
         break;
+      case "Deezer":
+        getDeezerListOfPlaylists(access_token).then(playlists => {
+          setListOfPlaylists(playlists);
+        });
       default:
         console.log("no platform");
     }

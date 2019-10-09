@@ -26,6 +26,8 @@ const PlaylistsList = ({ listOfPlaylists, access_token, platform }) => {
           console.log(res);
         });
         break;
+      case "Deezer":
+        console.log("deezer playlist");
       default:
     }
   };
