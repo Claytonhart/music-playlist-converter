@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+
+  background-color: $primary-blue;
+  color: #fff;
+
+  transition: all 0.2s;
+
+  &__item {
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__convert {
+    font-size: 1.8rem;
+  }
+}
