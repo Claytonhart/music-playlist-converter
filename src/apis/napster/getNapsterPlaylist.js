@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getNapsterPlaylist(
+export default async function getNapsterPlaylist(
   playlistId,
   playlistHolder = [],
   nextNapsterUrl
