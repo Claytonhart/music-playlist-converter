@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Convert from "./Convert";
+import Converted from "./Converted";
 import LandingPage from "./LandingPage";
 import AuthPopup from "./AuthPopup";
 import ChooseAPlaylist from "./ChooseAPlaylist";
@@ -9,7 +10,8 @@ import ChooseAPlaylist from "./ChooseAPlaylist";
 const Main = () => {
   const [initialPlaylist, setInitialPlaylist] = useState({});
   const [finalPlaylist, setFinalPlaylist] = useState({});
-  const [playlistId, setPlaylistId] = useState(null);
+
+  const [playlistToConvert, setPlaylistToConvert] = useState(null);
 
   return (
     <section className="main">
@@ -23,7 +25,6 @@ const Main = () => {
               {...props}
               setInitialPlaylist={setInitialPlaylist}
               setFinalPlaylist={setFinalPlaylist}
-              setPlaylistId={setPlaylistId}
             />
           )}
         />
@@ -34,12 +35,22 @@ const Main = () => {
             <ChooseAPlaylist
               {...props}
               initialPlaylist={initialPlaylist}
-              finalPlaylist={finalPlaylist}
-              playlistId={playlistId}
+              setPlaylistToConvert={setPlaylistToConvert}
             />
           )}
         />
         <Route path="/auth" exact component={AuthPopup} />
+        <Route
+          path="/converted"
+          exact
+          render={props => (
+            <Converted
+              {...props}
+              playlistToConvert={playlistToConvert}
+              finalPlaylist={finalPlaylist}
+            />
+          )}
+        />
       </Switch>
     </section>
   );

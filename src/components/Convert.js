@@ -8,14 +8,12 @@ import NapsterAuth from "./authComponents/NapsterAuth";
 import DeezerAuth from "./authComponents/DeezerAuth";
 import GetUserPlaylistButton from "./GetUserPlaylistButton";
 
-const Convert = ({ setInitialPlaylist, setFinalPlaylist, setPlaylistId }) => {
+const Convert = ({ setInitialPlaylist, setFinalPlaylist }) => {
   const [activeFrom, setActiveFrom] = useState(null);
   const [activeTo, setActiveTo] = useState(null);
 
   const [tokenFrom, setTokenFrom] = useState(null);
   const [tokenTo, setTokenTo] = useState(null);
-
-  const [playlistValue, setPlaylistValue] = useState("");
 
   const components = {
     Spotify: SpotifyAuth,
@@ -31,10 +29,6 @@ const Convert = ({ setInitialPlaylist, setFinalPlaylist, setPlaylistId }) => {
     setInitialPlaylist({ [activeFrom]: tokenFrom });
     setFinalPlaylist({ [activeTo]: tokenTo });
   }, [activeFrom, activeTo, tokenFrom, tokenTo]);
-
-  // useEffect(() => {
-  //   setPlaylistId(playlistValue);
-  // });
 
   let fromButtonToRender = null;
   if (activeFrom && tokenFrom) {
@@ -57,35 +51,14 @@ const Convert = ({ setInitialPlaylist, setFinalPlaylist, setPlaylistId }) => {
         <div className="playlists-container__left">
           <PlatformList setActive={setActiveFrom} active={activeFrom} />
           {fromButtonToRender}
-          {/* {activeFrom && tokenFrom ? <div>Authenticated</div> : null} */}
-          {/* {activeFrom ? <AuthFrom setToken={setTokenFrom} /> : null} */}
-          {/* {tokenTo} */}
         </div>
         <div className="playlists-container__right">
           <PlatformList setActive={setActiveTo} active={activeTo} />
           {toButtonToRender}
-          {/* {activeTo ? <AuthTo setToken={setTokenTo} /> : null} */}
-          {/* {tokenFrom} */}
         </div>
       </div>
-      {/* <GetUserPlaylistButton
-        id={playlistValue}
-        access_token={tokenFrom}
-        platform={activeFrom}
-      /> */}
       {activeFrom && tokenFrom && activeTo && tokenTo ? (
-        <div>
-          <h5>Please input your playlist's id</h5>
-          <input
-            type="text"
-            placeholder="playlist id"
-            value={playlistValue}
-            onChange={e => setPlaylistValue(e.target.value)}
-          />
-          <Link onClick={() => setPlaylistId(playlistValue)} to="/choose">
-            Continue
-          </Link>
-        </div>
+        <Link to="/choose">Continue</Link>
       ) : null}
     </section>
   );

@@ -8,7 +8,7 @@ import getYoutubeListOfPlaylists from "../apis/youtube/getYoutubeListOfPlaylists
 import getNapsterListOfPlaylists from "../apis/napster/getNapsterListOfPlaylists";
 import getDeezerListOfPlaylists from "../apis/deezer/getDeezerListOfPlaylists";
 
-const ChooseAPlaylist = ({ initialPlaylist, finalPlaylist, playlistId }) => {
+const ChooseAPlaylist = ({ initialPlaylist, setPlaylistToConvert }) => {
   const [listOfPlaylists, setListOfPlaylists] = useState([]);
 
   const platform = Object.keys(initialPlaylist)[0];
@@ -49,32 +49,12 @@ const ChooseAPlaylist = ({ initialPlaylist, finalPlaylist, playlistId }) => {
   return (
     <div className="choose-playlist">
       <h1>Choose a playlist to convert</h1>
-      <GetUserPlaylistButton
-        platform={platform}
-        access_token={access_token}
-        id={playlistId}
-      />
       <PlaylistsList
         listOfPlaylists={listOfPlaylists}
         access_token={access_token}
         platform={platform}
+        setPlaylistToConvert={setPlaylistToConvert}
       />
-      {/* <ul>
-        {data.map(playlist => (
-          <li key={playlist.id} uri={playlist.uri}>
-            <a
-              href={playlist.external_urls.spotify}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {playlist.tracks.total}:
-            </a>
-            <div onClick={() => getPlaylist(playlist.id, access_token)}>
-              {playlist.name}
-            </div>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };

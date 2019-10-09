@@ -4,17 +4,26 @@ import getSpotifyPlaylist from "../apis/spotify/getSpotifyPlaylist";
 import getYoutubePlaylist from "../apis/youtube/getYoutubePlaylist";
 import getNapsterPlaylist from "../apis/napster/getNapsterPlaylist";
 import getDeezerPlaylist from "../apis/deezer/getDeezerPlaylist";
+import { withRouter } from "react-router-dom";
 
 /*
   Takes an array of objects as listOfPlaylists
 */
-const PlaylistsList = ({ listOfPlaylists, access_token, platform }) => {
+const PlaylistsList = ({
+  history,
+  listOfPlaylists,
+  access_token,
+  platform,
+  setPlaylistToConvert
+}) => {
   // break this out into an external function
   const getPlaylist = (platform, id, access_token) => {
     switch (platform) {
       case "Spotify":
         getSpotifyPlaylist(id, access_token).then(res => {
-          console.log(res);
+          setPlaylistToConvert(res);
+          // set app level state, res = array of playlists to search with
+          history.push("/converted");
         });
         break;
       case "Youtube":
@@ -51,4 +60,4 @@ const PlaylistsList = ({ listOfPlaylists, access_token, platform }) => {
   );
 };
 
-export default PlaylistsList;
+export default withRouter(PlaylistsList);
