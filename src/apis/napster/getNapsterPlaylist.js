@@ -2,16 +2,20 @@ import axios from "axios";
 
 export default async function getNapsterPlaylist(
   playlistId,
+  accessToken,
   playlistHolder = [],
   nextNapsterUrl
 ) {
   const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
-  const napsterUrl = `https://api.napster.com/v2.2/playlists/
-		${playlistId}/tracks?
-		apikey=${apiKey}&
-		limit=200`;
+  const napsterUrl = `https://api.napster.com/v2.2/playlists/${playlistId}/tracks?apikey=${apiKey}&limit=200`;
 
-  const request = await axios.get(nextNapsterUrl || napsterUrl);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  };
+
+  const request = await axios.get(nextNapsterUrl || napsterUrl, config);
 
   const { next } = request.data.meta.query;
   const { data } = request;

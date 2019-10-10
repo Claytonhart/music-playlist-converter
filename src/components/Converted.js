@@ -12,6 +12,10 @@ import addSongsToNapsterPlaylist from "../apis/napster/addSongsToNapsterPlaylist
 import createNewNapsterPlaylist from "../apis/napster/createNewNapsterPlaylist";
 import postNapsterPlaylist from "../apis/napster/postNapsterPlaylist";
 
+import addSongsToDeezerPlaylist from "../apis/deezer/addSongsToDeezerPlaylist";
+import createNewDeezerPlaylist from "../apis/deezer/createNewDeezerPlaylist";
+import postDeezerPlaylist from "../apis/deezer/postDeezerPlaylist";
+
 /*
   finalPlaylist is an object with key of platform name and value of access_token
   playlistToCovert is an array of objects with keys of platformName and songName
@@ -77,6 +81,23 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
                   setConverted(true);
                 });
               });
+            }
+          );
+        case "Deezer":
+          addSongsToDeezerPlaylist(playlistToConvert, access_token).then(
+            playlists => {
+              // returns playlist, failedToFind, failedToParse
+              createNewDeezerPlaylist(access_token, "New Deezer Playlist").then(
+                playlistId => {
+                  postDeezerPlaylist(
+                    playlists.playlist,
+                    access_token,
+                    playlistId
+                  ).then(() => {
+                    setConverted(true);
+                  });
+                }
+              );
             }
           );
         default:
