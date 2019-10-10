@@ -9,7 +9,7 @@ export default async function getYoutubePlaylist(
 			part=snippet&
 			maxResults=50&
 			playlistId=${id}&
-			key=AIzaSyCq4-PhsCUJvxda413InkNRy3f5MZu3zmw&
+			key=AIzaSyDwFUK-ngQ3FkrX6taZoQKd7tupYbO7odE&
 			fields=items(snippet(title,resourceId(videoId))),nextPageToken${pageToken}`;
   const request = await axios.get(youtubeUrl);
   const { data } = request;

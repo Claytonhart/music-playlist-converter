@@ -28,17 +28,23 @@ const PlaylistsList = ({
         break;
       case "Youtube":
         getYoutubePlaylist(id).then(res => {
-          console.log(res);
+          setPlaylistToConvert(res);
+          // set app level state, res = array of playlists to search with
+          history.push("/converted");
         });
         break;
       case "Napster":
         getNapsterPlaylist(id).then(res => {
-          console.log(res);
+          setPlaylistToConvert(res);
+          // set app level state, res = array of playlists to search with
+          history.push("/converted");
         });
         break;
       case "Deezer":
         getDeezerPlaylist(id, access_token).then(res => {
-          console.log(res);
+          setPlaylistToConvert(res);
+          // set app level state, res = array of playlists to search with
+          history.push("/converted");
         });
         break;
       default:
