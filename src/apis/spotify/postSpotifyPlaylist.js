@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function postSpotifyPlaylist(
+export default async function postSpotifyPlaylist(
   spotifyUriPlaylist,
   accessToken,
   playlistId

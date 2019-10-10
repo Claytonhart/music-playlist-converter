@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function addSongsToSpotifyPlaylist(
+export default async function addSongsToNapsterPlaylist(
   initialPlaylist,
   accessToken
 ) {
@@ -12,7 +12,7 @@ export default async function addSongsToSpotifyPlaylist(
     console.log(song);
     if (song.hasOwnProperty("artistName")) {
       const { artistName, songName } = song;
-      const result = await getSpotifySong(songName, artistName, accessToken);
+      const result = await getNapsterSong(songName, artistName, accessToken);
 
       debugger;
       if (result) {
@@ -30,10 +30,12 @@ export default async function addSongsToSpotifyPlaylist(
   return { playlist, failedToFind, failedToParse };
 }
 
-async function getSpotifySong(songName, artistName, accessToken) {
-  const songUrl = `https://api.spotify.com/v1/search?q=
-		artist:"${artistName}"%20
-		track:${songName}&
+async function getNapsterSong(songName, artistName, accessToken) {
+  const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
+  const songUrl = `https://api.napster.com/v2.2/search/verbose?
+		apikey=${apiKey}&
+		per_type_limit=1&
+		query=${songName} ${artistName}&
 		type=track`;
 
   const config = {
@@ -43,10 +45,13 @@ async function getSpotifySong(songName, artistName, accessToken) {
   };
 
   const request = await axios.get(songUrl, config);
-  const tracks = request.data.tracks;
+  debugger;
+
+  const order = request.data.search.order;
   let id;
-  if (tracks.items[0]) {
-    id = tracks.items[0].id;
+  debugger;
+  if (order[0]) {
+    id = order[0];
   }
 
   console.log(id);

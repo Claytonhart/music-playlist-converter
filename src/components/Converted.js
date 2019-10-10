@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+
 import addSongsToYoutubePlaylist from "../apis/youtube/addSongsToYoutubePlaylist";
-import postYoutubePlaylist from "../apis/youtube/postYoutubePlaylist";
 import createNewYoutubePlaylist from "../apis/youtube/createNewYoutubePlaylist";
-import { addSongsToSpotifyPlaylist } from "../apis/spotify/addSongsToSpotifyPlaylist";
-import { createNewSpotifyPlaylist } from "../apis/spotify/createNewSpotifyPlaylist";
-import { postSpotifyPlaylist } from "../apis/spotify/postSpotifyPlaylist";
+import postYoutubePlaylist from "../apis/youtube/postYoutubePlaylist";
+
+import addSongsToSpotifyPlaylist from "../apis/spotify/addSongsToSpotifyPlaylist";
+import createNewSpotifyPlaylist from "../apis/spotify/createNewSpotifyPlaylist";
+import postSpotifyPlaylist from "../apis/spotify/postSpotifyPlaylist";
+
+import addSongsToNapsterPlaylist from "../apis/napster/addSongsToNapsterPlaylist";
+import createNewNapsterPlaylist from "../apis/napster/createNewNapsterPlaylist";
+import postNapsterPlaylist from "../apis/napster/postNapsterPlaylist";
 
 /*
   finalPlaylist is an object with key of platform name and value of access_token
@@ -16,10 +22,10 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
   useEffect(() => {
     const platform = Object.keys(finalPlaylist)[0];
     const access_token = finalPlaylist[platform];
-
-    switch (platform) {
-      case "Youtube":
-        if (playlistToConvert) {
+    if (playlistToConvert) {
+      switch (platform) {
+        case "Youtube":
+          // if (playlistToConvert) {
           addSongsToYoutubePlaylist(playlistToConvert, access_token).then(
             playlist => {
               createNewYoutubePlaylist(
@@ -34,14 +40,16 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
               });
             }
           );
-        }
-        break;
-      case "Spotify":
-        addSongsToSpotifyPlaylist(playlistToConvert, access_token).then(
-          playlists => {
-            // returns playlist, failedToFind, failedToParse
-            createNewSpotifyPlaylist(access_token, "New Spotify Playlist").then(
-              playlistId => {
+          // }
+          break;
+        case "Spotify":
+          addSongsToSpotifyPlaylist(playlistToConvert, access_token).then(
+            playlists => {
+              // returns playlist, failedToFind, failedToParse
+              createNewSpotifyPlaylist(
+                access_token,
+                "New Spotify Playlist"
+              ).then(playlistId => {
                 postSpotifyPlaylist(
                   playlists.playlist,
                   access_token,
@@ -49,13 +57,31 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
                 ).then(() => {
                   setConverted(true);
                 });
-              }
-            );
-          }
-        );
-        console.log("creating new spotify playlist?");
-      default:
-        console.log(platform, "platform unknown");
+              });
+            }
+          );
+          console.log("creating new spotify playlist?");
+        case "Napster":
+          addSongsToNapsterPlaylist(playlistToConvert, access_token).then(
+            playlists => {
+              // returns playlist, failedToFind, failedToParse
+              createNewNapsterPlaylist(
+                access_token,
+                "New Napster Playlist"
+              ).then(playlistId => {
+                postNapsterPlaylist(
+                  playlists.playlist,
+                  access_token,
+                  playlistId
+                ).then(() => {
+                  setConverted(true);
+                });
+              });
+            }
+          );
+        default:
+          console.log(platform, "platform unknown");
+      }
     }
   }, []);
   return (

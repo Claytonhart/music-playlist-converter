@@ -6,7 +6,6 @@ import SpotifyAuth from "./authComponents/SpotifyAuth";
 import YoutubeAuth from "./authComponents/YoutubeAuth";
 import NapsterAuth from "./authComponents/NapsterAuth";
 import DeezerAuth from "./authComponents/DeezerAuth";
-import GetUserPlaylistButton from "./GetUserPlaylistButton";
 
 const Convert = ({ setInitialPlaylist, setFinalPlaylist }) => {
   const [activeFrom, setActiveFrom] = useState(null);
