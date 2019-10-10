@@ -46,8 +46,8 @@ const Main = () => {
           render={props => (
             <Converted
               {...props}
-              playlistToConvert={playlistToConvert}
               finalPlaylist={finalPlaylist}
+              playlistToConvert={playlistToConvert}
             />
           )}
         />

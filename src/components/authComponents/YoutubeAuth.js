@@ -10,8 +10,8 @@ const YoutubeAuth = ({ setToken }) => {
   return (
     <YoutubeLogin
       // redirectUri="https://claytonhart.github.io/playlist-converter"
-      // clientId="765030499566-0hfptahsbp45p3pj9f5dqlj6ibot8lj6.apps.googleusercontent.com"
-      clientId="59298326198-gbjsfd693s7ikrqtjg38o2mm1fdctm23.apps.googleusercontent.com"
+      clientId="765030499566-0hfptahsbp45p3pj9f5dqlj6ibot8lj6.apps.googleusercontent.com"
+      // clientId="59298326198-gbjsfd693s7ikrqtjg38o2mm1fdctm23.apps.googleusercontent.com"
       // scope="https://www.googleapis.com/auth/youtube.force-ssl"
       onSuccess={youtubeResponse}
       onFailure={youtubeResponse}
