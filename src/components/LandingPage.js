@@ -11,7 +11,7 @@ const LandingPage = () => {
         </p>
       </div>
       <Link to="/convert" className="btn landing__btn">
-        Get Started Now
+        Get Started Now &nbsp;&rarr;
       </Link>
     </section>
   );

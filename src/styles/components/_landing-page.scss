@@ -1,22 +1,59 @@
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100vh;
+    background-image: url("../../images/mariah-ashby-4p0C_OiXNiM-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(2px);
+  }
+}
+
+.main {
+  flex: 1;
+  position: relative;
+}
+
 .landing {
-  margin: 2rem;
+  color: #fff;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  height: 20vh;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  left: 5%;
+  top: 26%;
 
   &__header {
-    font-size: 3.6rem;
-    margin-bottom: 1rem;
+    font-size: 8.2rem;
+    font-weight: 300;
+    margin-bottom: 1.4rem;
+    line-height: 1;
   }
 
   &__desc {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    color: #dbdbdb;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
   }
 
   &__btn {
+    flex-grow: 0;
+    padding: 1.6rem 2.8rem;
+    // color: #3a503b !important;
+    // background-color: #fff;
   }
 }

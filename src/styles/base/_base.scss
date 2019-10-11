@@ -19,7 +19,8 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
+  font-family: "roboto", sans-serif;
   font-weight: 400;
 
   // @media only screen and (max-width: $bp-large) {
@@ -28,7 +29,8 @@ html {
 }
 
 .btn {
-  background-color: $primary-blue;
+  // background-color: $primary-blue;
+  background-color: $primary-green-dark;
   color: #fff;
   padding: 1rem 2rem;
   cursor: pointer;
@@ -40,7 +42,8 @@ html {
   font-size: 2rem;
 
   &:hover {
-    background-color: $primary-blue-dark;
+    // background-color: $primary-blue-dark;
+    background-color: $primary-green;
   }
 }
 
