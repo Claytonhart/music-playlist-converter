@@ -2,6 +2,7 @@ import axios from "axios";
 
 export default async function getYoutubePlaylist(
   id,
+  accessToken,
   pageToken = "",
   playlistHolder = []
 ) {
@@ -10,8 +11,15 @@ export default async function getYoutubePlaylist(
 			maxResults=50&
 			playlistId=${id}&
 			key=AIzaSyDwFUK-ngQ3FkrX6taZoQKd7tupYbO7odE&
-			fields=items(snippet(title,resourceId(videoId))),nextPageToken${pageToken}`;
-  const request = await axios.get(youtubeUrl);
+      fields=items(snippet(title,resourceId(videoId))),nextPageToken${pageToken}`;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  };
+
+  const request = await axios.get(youtubeUrl, config);
   const { data } = request;
 
   const { nextPageToken } = data;
@@ -44,6 +52,7 @@ export default async function getYoutubePlaylist(
   while (nextPageToken) {
     return await getYoutubePlaylist(
       id,
+      accessToken,
       `&pageToken=${nextPageToken}`,
       playlistHolder
     );

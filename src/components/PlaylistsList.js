@@ -27,7 +27,7 @@ const PlaylistsList = ({
         });
         break;
       case "Youtube":
-        getYoutubePlaylist(id).then(res => {
+        getYoutubePlaylist(id, access_token).then(res => {
           setPlaylistToConvert(res);
           // set app level state, res = array of playlists to search with
           history.push("/converted");

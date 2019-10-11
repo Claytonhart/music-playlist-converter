@@ -19,10 +19,8 @@ export default async function createNewSpotifyPlaylist(
   };
 
   let response = await axios.post(url, JSON.stringify(body), config);
-  console.log(response);
 
-  // let newSpotifyApiPlaylistUrl = response.data.href;
-  // let newSpotifyPlaylistUrl = response.data.external_urls.spotify;
+  const id = response.data.id;
 
-  return response.data.id;
+  return id;
 }
