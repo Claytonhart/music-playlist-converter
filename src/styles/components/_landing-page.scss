@@ -53,7 +53,17 @@
   &__btn {
     flex-grow: 0;
     padding: 1.6rem 2.8rem;
-    // color: #3a503b !important;
-    // background-color: #fff;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    &:active,
+    &:focus {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4);
+    }
   }
 }

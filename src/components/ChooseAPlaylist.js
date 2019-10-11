@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import GetUserPlaylistButton from "./GetUserPlaylistButton";
 import PlaylistsList from "./PlaylistsList";
 
 import getSpotifyListOfPlaylists from "../apis/spotify/getSpotifyListOfPlaylists";
@@ -35,16 +34,10 @@ const ChooseAPlaylist = ({ initialPlaylist, setPlaylistToConvert }) => {
         getDeezerListOfPlaylists(access_token).then(playlists => {
           setListOfPlaylists(playlists);
         });
+        break;
       default:
-        console.log("no platform");
     }
   }, [initialPlaylist, access_token, platform]);
-
-  // const getPlaylist = (id, access_token) => {
-  //   getSpotifyPlaylist(id, access_token).then(res => {
-  //     console.log(res);
-  //   });
-  // };
 
   return (
     <div className="choose-playlist">

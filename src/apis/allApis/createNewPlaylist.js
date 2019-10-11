@@ -25,11 +25,7 @@ const createNewPlaylist = async (platform, playlistToConvert, access_token) => {
         access_token,
         "New Youtube Playlist"
       );
-      const newYoutubePlaylist = await postYoutubePlaylist(
-        playlist,
-        access_token,
-        playlistId
-      );
+      await postYoutubePlaylist(playlist, access_token, playlistId);
       return `https://www.youtube.com/playlist?list=${playlistId}`;
     }
     case "Spotify": {
@@ -41,11 +37,7 @@ const createNewPlaylist = async (platform, playlistToConvert, access_token) => {
         access_token,
         "New Spotify Playlist"
       );
-      const newSpotifyPlaylist = await postSpotifyPlaylist(
-        playlists.playlist,
-        access_token,
-        playlistId
-      );
+      await postSpotifyPlaylist(playlists.playlist, access_token, playlistId);
       return `https://open.spotify.com/playlist/${playlistId}`;
     }
     case "Napster": {
@@ -57,11 +49,7 @@ const createNewPlaylist = async (platform, playlistToConvert, access_token) => {
         access_token,
         "New Napster Playlist"
       );
-      const newNapsterPlaylist = await postNapsterPlaylist(
-        playlists.playlist,
-        access_token,
-        playlistId
-      );
+      await postNapsterPlaylist(playlists.playlist, access_token, playlistId);
       return `https://app.napster.com/playlists/playlist/${playlistId}`;
     }
     case "Deezer": {
@@ -73,11 +61,7 @@ const createNewPlaylist = async (platform, playlistToConvert, access_token) => {
         access_token,
         "New Deezer Playlist"
       );
-      const newDeezerPlaylist = await postDeezerPlaylist(
-        playlists.playlist,
-        access_token,
-        playlistId
-      );
+      await postDeezerPlaylist(playlists.playlist, access_token, playlistId);
       return `https://www.deezer.com/us/playlist/${playlistId}`;
     }
     default:

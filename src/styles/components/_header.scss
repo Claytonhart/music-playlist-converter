@@ -3,12 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 2rem;
-
-  // background-color: $primary-blue;
   background-color: #fff;
-  // color: #fff;
-  // color: $primary-blue;
-  color: $primary-green-dark;
+  color: $primary-green;
 
   transition: all 0.2s;
 
@@ -17,8 +13,8 @@
     cursor: pointer;
 
     &:hover {
-      color: $primary-green;
-      border-bottom: 1px solid $primary-green-dark;
+      color: $primary-green-dark;
+      border-bottom: 1px solid $primary-green;
     }
   }
 

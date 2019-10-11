@@ -18,10 +18,7 @@ export default async function createNewNapsterPlaylist(
   let response = await axios.post(url, JSON.stringify(body), config);
 
   let { data } = response;
-  let newNapsterApiPlaylistUrl = data.playlists[0].id;
+  let id = data.playlists[0].id;
 
-  let newNapsterPlaylistUrl = `https://app.napster.com/playlists/playlist/${newNapsterApiPlaylistUrl}`;
-  debugger;
-
-  return newNapsterApiPlaylistUrl;
+  return id;
 }

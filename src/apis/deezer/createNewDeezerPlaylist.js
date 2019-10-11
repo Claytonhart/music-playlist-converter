@@ -12,10 +12,7 @@ export default async function createNewDeezerPlaylist(
   let { data } = response;
   let playlist = data.replace(/[()]/g, ""); //removes parentheses surounding the response string
   playlist = JSON.parse(playlist);
-  let newDeezerApiPlaylistUrl = playlist.id;
+  let id = playlist.id;
 
-  let newDeezerPlaylistUrl = `https://www.deezer.com/us/playlist/${playlist.id}`;
-  debugger;
-
-  return newDeezerApiPlaylistUrl;
+  return id;
 }

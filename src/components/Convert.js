@@ -27,7 +27,14 @@ const Convert = ({ setInitialPlaylist, setFinalPlaylist }) => {
   useEffect(() => {
     setInitialPlaylist({ [activeFrom]: tokenFrom });
     setFinalPlaylist({ [activeTo]: tokenTo });
-  }, [activeFrom, activeTo, tokenFrom, tokenTo]);
+  }, [
+    activeFrom,
+    activeTo,
+    tokenFrom,
+    tokenTo,
+    setInitialPlaylist,
+    setFinalPlaylist
+  ]);
 
   let fromButtonToRender = null;
   if (activeFrom && tokenFrom) {

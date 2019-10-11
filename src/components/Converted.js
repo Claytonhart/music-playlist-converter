@@ -20,7 +20,7 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
         setConverted(true);
       });
     }
-  }, []);
+  }, [finalPlaylist, playlistToConvert]);
   return (
     <div>
       {!converted ? (
@@ -28,7 +28,7 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
       ) : (
         <div>
           Converted!
-          <a href={playlistUrl} target="_blank" rel="noopener">
+          <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
             Your new playlist
           </a>
         </div>
