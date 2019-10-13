@@ -13,7 +13,11 @@ const DeezerAuth = ({ setToken }) => {
     deezerAuth(recieveDeezerMessage);
   }
 
-  return <button onClick={startDeezerAuth}>Authenticate Deezer</button>;
+  return (
+    <button className="btn" onClick={startDeezerAuth}>
+      Authenticate Deezer
+    </button>
+  );
 };
 
 export default DeezerAuth;

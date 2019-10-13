@@ -38,14 +38,18 @@ const Convert = ({ setInitialPlaylist, setFinalPlaylist }) => {
 
   let fromButtonToRender = null;
   if (activeFrom && tokenFrom) {
-    fromButtonToRender = <div>Authenticated</div>;
+    fromButtonToRender = (
+      <button className="btn btn-inverted">Authenticated</button>
+    );
   } else if (activeFrom) {
     fromButtonToRender = <AuthFrom setToken={setTokenFrom} />;
   }
 
   let toButtonToRender = null;
   if (activeTo && tokenTo) {
-    toButtonToRender = <div>Authenticated</div>;
+    toButtonToRender = (
+      <button className="btn btn-inverted">Authenticated</button>
+    );
   } else if (activeTo) {
     toButtonToRender = <AuthTo setToken={setTokenTo} />;
   }
@@ -56,15 +60,19 @@ const Convert = ({ setInitialPlaylist, setFinalPlaylist }) => {
       <div className="playlists-container">
         <div className="playlists-container__left">
           <PlatformList setActive={setActiveFrom} active={activeFrom} />
-          {fromButtonToRender}
+          <div className="playlists-container__button">
+            {fromButtonToRender}
+          </div>
         </div>
         <div className="playlists-container__right">
           <PlatformList setActive={setActiveTo} active={activeTo} />
-          {toButtonToRender}
+          <div className="playlists-container__button">{toButtonToRender}</div>
         </div>
       </div>
       {activeFrom && tokenFrom && activeTo && tokenTo ? (
-        <Link to="/choose">Continue</Link>
+        <Link to="/choose" className="convert__next-button">
+          Continue &nbsp;<span>&rarr;</span>
+        </Link>
       ) : null}
     </section>
   );

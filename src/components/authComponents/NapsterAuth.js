@@ -15,7 +15,11 @@ const NapsterAuth = ({ setToken }) => {
     napsterAuth(recieveNapsterMessage);
   }
 
-  return <button onClick={startNapsterAuth}>Authenticate Napster</button>;
+  return (
+    <button className="btn" onClick={startNapsterAuth}>
+      Authenticate Napster
+    </button>
+  );
 };
 
 export default NapsterAuth;

@@ -22,15 +22,29 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
     }
   }, [finalPlaylist, playlistToConvert]);
   return (
-    <div>
+    <div className="converted">
       {!converted ? (
-        <div>converting...</div>
+        <div className="converted-container__header">
+          Converting your music... Please wait, sometimes this can take a few
+          minutes
+        </div>
       ) : (
-        <div>
-          Converted!
-          <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
+        <div className="converted-container">
+          <h2 className="converted-container__header">Converted!</h2>
+          <a
+            className="converted-container__link"
+            href={playlistUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Your new playlist
           </a>
+          <p className="converted-container__desc">
+            Thank you for using Playlist Converter
+            <span>
+              <a href="/">convert another playlist?</a>
+            </span>
+          </p>
         </div>
       )}
     </div>

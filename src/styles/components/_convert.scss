@@ -1,27 +1,46 @@
 .convert {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #fff;
+  width: 80%;
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top: 12rem;
+  padding: 3rem;
 
   &__header {
+    color: $primary-green;
+    font-size: 3rem;
+    text-transform: capitalize;
+  }
+
+  &__next-button {
+    color: $primary-green-dark;
+    border: 1px solid $primary-green-dark;
+    padding: 1rem 2rem;
+    font-family: inherit;
     font-size: 2rem;
   }
 }
 
 .playlists-container {
-  width: 80%;
-  max-width: 90rem;
-  background-color: $primary-blue-light;
-  margin-top: 2rem;
+  width: 100%;
 
   display: flex;
 
   &__left {
     flex-basis: 50%;
+    margin: 2rem auto;
   }
 
   &__right {
     flex-basis: 50%;
+    margin: 2rem auto;
+  }
+
+  &__button {
+    margin-top: 3.5rem;
+    text-align: center;
   }
 }

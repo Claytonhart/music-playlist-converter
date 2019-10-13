@@ -52,7 +52,7 @@ const PlaylistsList = ({
   };
 
   return (
-    <ul>
+    <ul className="playlists-list-container">
       {listOfPlaylists &&
         listOfPlaylists.map(playlist => (
           <PlaylistsListItem

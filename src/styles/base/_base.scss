@@ -34,7 +34,7 @@ html {
   padding: 1rem 2rem;
   cursor: pointer;
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   transition: all 0.2s;
 
   font-family: inherit;
@@ -42,6 +42,17 @@ html {
 
   &:hover {
     background-color: $primary-green;
+  }
+}
+
+.btn-inverted {
+  cursor: initial;
+  background-color: #fff;
+  color: $primary-green-dark;
+  border: 1px solid $primary-green-dark;
+
+  &:hover {
+    background-color: #fff;
   }
 }
 

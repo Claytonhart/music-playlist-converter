@@ -14,7 +14,11 @@ const SpotifyAuth = ({ setToken }) => {
     spotifyAuth(recieveSpotifyMessage);
   }
 
-  return <button onClick={startSpotifyAuth}>Authenticate Spotify</button>;
+  return (
+    <button className="btn" onClick={startSpotifyAuth}>
+      Authenticate Spotify
+    </button>
+  );
 };
 
 export default SpotifyAuth;

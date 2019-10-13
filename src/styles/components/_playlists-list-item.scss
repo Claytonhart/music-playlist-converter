@@ -1,0 +1,13 @@
+.playlist-item {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid gainsboro;
+  font-size: 2rem;
+  flex-basis: 40%;
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    cursor: pointer;
+  }
+}

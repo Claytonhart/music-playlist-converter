@@ -1,0 +1,17 @@
+.choose-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 80%;
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top: 12rem;
+  padding: 3rem;
+
+  &__header {
+    color: $primary-green;
+    font-size: 3rem;
+    text-transform: capitalize;
+  }
+}

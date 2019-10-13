@@ -7,18 +7,22 @@ import React from "react";
 const PlaylistsListItem = ({ playlist, access_token, getPlaylist }) => {
   const { id, url, name } = playlist;
 
-  // const getPlaylist = (id, access_token) => {
-  //   getSpotifyPlaylist(id, access_token).then(res => {
-  //     console.log(res);
-  //   });
-  // };
-
   return (
-    <li style={{ display: "flex" }}>
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        ->
+    <li className="playlist-item" style={{ display: "flex" }}>
+      <a
+        className="playlist-item__link"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        &#128279;
       </a>
-      <div onClick={() => getPlaylist(id, access_token)}>{name}</div>
+      <div
+        className="playlist-item__title"
+        onClick={() => getPlaylist(id, access_token)}
+      >
+        {name}
+      </div>
     </li>
   );
 };

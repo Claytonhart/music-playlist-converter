@@ -41,7 +41,7 @@ const ChooseAPlaylist = ({ initialPlaylist, setPlaylistToConvert }) => {
 
   return (
     <div className="choose-playlist">
-      <h1>Choose a playlist to convert</h1>
+      <h1 className="choose-playlist__header">Choose a playlist to convert</h1>
       <PlaylistsList
         listOfPlaylists={listOfPlaylists}
         access_token={access_token}
