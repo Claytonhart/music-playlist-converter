@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
 
 import createNewPlaylist from "../apis/allApis/createNewPlaylist";
+import ConvertedPlaylist from "./ConvertedPlaylist";
 
 /*
   finalPlaylist is an object with key of platform name and value of access_token
-  playlistToCovert is an array of objects with keys of platformName and songName
+  playlistToCovert is an array of objects with keys of artistName and songName
 */
 const Converted = ({ finalPlaylist, playlistToConvert }) => {
-  const [converted, setConverted] = useState(false);
+  // const [converted, setConverted] = useState(false);
+  const [converted, setConverted] = useState(true);
   const [playlistUrl, setPlaylistUrl] = useState(null);
 
-  useEffect(() => {
-    const platform = Object.keys(finalPlaylist)[0];
-    const access_token = finalPlaylist[platform];
+  const platform = Object.keys(finalPlaylist)[0];
+  const access_token = finalPlaylist[platform];
 
+  useEffect(() => {
+    // const platform = Object.keys(finalPlaylist)[0];
+    // const access_token = finalPlaylist[platform];
     if (playlistToConvert) {
       createNewPlaylist(platform, playlistToConvert, access_token).then(url => {
         setPlaylistUrl(url);
         setConverted(true);
       });
     }
-  }, [finalPlaylist, playlistToConvert]);
+  }, [platform, playlistToConvert, access_token]);
+
   return (
     <div className="converted">
       {!converted ? (
@@ -29,23 +34,26 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
           minutes
         </div>
       ) : (
-        <div className="converted-container">
-          <h2 className="converted-container__header">Converted!</h2>
-          <a
-            className="converted-container__link"
-            href={playlistUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Your new playlist
-          </a>
-          <p className="converted-container__desc">
-            Thank you for using Playlist Converter
-            <span>
-              <a href="/">convert another playlist?</a>
-            </span>
-          </p>
-        </div>
+        <>
+          <div className="converted__top">
+            <div className="converted-container">
+              <h2 className="converted-container__header">
+                Your {platform} Playlist has been converted
+              </h2>
+              <p className="converted-container__desc">
+                Thank you for using Playlist Converter
+                <span>
+                  <a href="/">convert another playlist?</a>
+                </span>
+              </p>
+            </div>
+          </div>
+          <ConvertedPlaylist
+            playlistUrl={playlistUrl}
+            playlist={playlistToConvert}
+            platform={platform}
+          />
+        </>
       )}
     </div>
   );

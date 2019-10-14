@@ -15,7 +15,9 @@ const PlaylistsListItem = ({ playlist, access_token, getPlaylist }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        &#128279;
+        <span role="img" aria-label="link to playlist">
+          &#128279;
+        </span>
       </a>
       <div
         className="playlist-item__title"
