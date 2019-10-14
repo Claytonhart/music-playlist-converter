@@ -34,11 +34,27 @@
   left: 5%;
   top: 26%;
 
+  @media only screen and (max-width: 62.5em) {
+    width: 85%;
+    top: 20%;
+    margin: 0 auto;
+    position: relative;
+    left: unset;
+  }
+
+  @media only screen and (max-width: 68.75em) {
+    font-size: 50%;
+  }
+
   &__header {
     font-size: 8.2rem;
     font-weight: 300;
     margin-bottom: 1.4rem;
     line-height: 1;
+
+    @media only screen and (max-width: 37.5em) {
+      font-size: 6rem;
+    }
   }
 
   &__desc {

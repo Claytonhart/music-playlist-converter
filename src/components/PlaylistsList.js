@@ -16,6 +16,7 @@ const PlaylistsList = ({
   platform,
   setPlaylistToConvert
 }) => {
+  debugger;
   // break this out into an external function
   const getPlaylist = (platform, id, access_token) => {
     switch (platform) {

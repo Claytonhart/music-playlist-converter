@@ -3,4 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  @media only screen and (max-width: 37.5em) {
+    flex-direction: column;
+  }
 }

@@ -9,10 +9,18 @@
   margin-top: 12rem;
   padding: 3rem;
 
+  @media only screen and (max-width: 37.5em) {
+    width: 85%;
+  }
+
   &__header {
     color: $primary-green;
     font-size: 3rem;
     text-transform: capitalize;
+
+    @media only screen and (max-width: 37.5em) {
+      margin-bottom: 2rem;
+    }
   }
 
   &__next-button {
@@ -29,18 +37,34 @@
 
   display: flex;
 
+  @media only screen and (max-width: 37.5em) {
+    flex-direction: column;
+  }
+
   &__left {
-    flex-basis: 50%;
+    flex-basis: 45%;
     margin: 2rem auto;
+
+    @media only screen and (max-width: 37.5em) {
+      margin: 1rem 0;
+    }
   }
 
   &__right {
-    flex-basis: 50%;
+    flex-basis: 45%;
     margin: 2rem auto;
+
+    @media only screen and (max-width: 37.5em) {
+      margin: 1rem 0;
+    }
   }
 
   &__button {
     margin-top: 3.5rem;
     text-align: center;
+
+    @media only screen and (max-width: 37.5em) {
+      margin: 2rem;
+    }
   }
 }

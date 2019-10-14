@@ -37,7 +37,7 @@ const ChooseAPlaylist = ({ initialPlaylist, setPlaylistToConvert }) => {
         break;
       default:
     }
-  }, [initialPlaylist, access_token, platform]);
+  }, [access_token, platform]);
 
   return (
     <div className="choose-playlist">
