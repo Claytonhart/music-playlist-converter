@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "476729694bd0d1c3d9516496706d91fc",
+    "revision": "041af48efb02853e2aa7527a9a769d41",
     "url": "/music-playlist-converter/index.html"
   },
   {
-    "revision": "92cdf507821220f5a148",
+    "revision": "73fa793a850077e4777b",
     "url": "/music-playlist-converter/static/css/main.897cab2d.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/music-playlist-converter/static/js/2.fdb7ebf4.chunk.js"
   },
   {
-    "revision": "92cdf507821220f5a148",
-    "url": "/music-playlist-converter/static/js/main.26241a93.chunk.js"
+    "revision": "73fa793a850077e4777b",
+    "url": "/music-playlist-converter/static/js/main.a218447b.chunk.js"
   },
   {
     "revision": "cfce8d38f4f32f972cb1",
