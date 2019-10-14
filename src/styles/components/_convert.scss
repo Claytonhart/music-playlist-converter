@@ -29,6 +29,13 @@
     padding: 1rem 2rem;
     font-family: inherit;
     font-size: 2rem;
+    background-color: #fff;
+  }
+
+  &__error {
+    color: red;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
   }
 }
 
