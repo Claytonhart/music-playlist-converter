@@ -8,7 +8,7 @@ function napsterAuth(recNapsterMessage) {
   const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
   const urlString = `https://api.napster.com/oauth/authorize?
 		client_id=${apiKey}&
-		redirect_uri=http://localhost:3000/auth&
+		redirect_uri=https://claytonhart.github.io/music-playlist-converter/auth&
 		response_type=code`;
 
   const name = "Napster";

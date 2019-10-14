@@ -23,7 +23,7 @@ const AuthPopup = () => {
       { access_token, name: "Playlist_Authentication", code },
       // "https://claytonhart.github.io/convert/Spotify/Youtube"
       // `https://claytonhart.github.io/playlist-converter/convert/Spotify/Youtube`
-      "http://localhost:3000/convert"
+      "https://claytonhart.github.io/music-playlist-converter/convert"
     );
     window.close();
   }, []);

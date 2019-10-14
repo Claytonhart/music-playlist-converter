@@ -11,7 +11,7 @@ async function napsterTokenFromCode(passedCode) {
     client_secret: api_secret,
     response_type: "code",
     grant_type: "authorization_code",
-    redirect_uri: "http://localhost:3000/auth",
+    redirect_uri: "https://claytonhart.github.io/music-playlist-converter/auth",
     code: passedCode
   };
 

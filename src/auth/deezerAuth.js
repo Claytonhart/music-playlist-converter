@@ -8,7 +8,7 @@ function deezerAuth(recDeezerMessage) {
   const url = {
     authEndpoint: "https://connect.deezer.com/oauth/auth.php",
     app_id: 374124,
-    redirect_uri: `http://localhost:3000/auth`,
+    redirect_uri: `https://claytonhart.github.io/music-playlist-converter/auth`,
     perms: "manage_library,offline_access"
 
     // `https://connect.deezer.com/oauth/auth.php?
