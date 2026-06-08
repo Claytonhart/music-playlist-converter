@@ -16,6 +16,15 @@ export default defineConfig({
       loader: { ".js": "jsx" },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Use the modern Dart Sass compiler API (silences the legacy-js-api
+        // deprecation warning Vite emits by default).
+        api: "modern-compiler",
+      },
+    },
+  },
   server: {
     port: 3000,
   },
