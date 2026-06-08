@@ -8,21 +8,21 @@ import ConvertedPlaylist from "./ConvertedPlaylist";
   playlistToCovert is an array of objects with keys of artistName and songName
 */
 const Converted = ({ finalPlaylist, playlistToConvert }) => {
-  // const [converted, setConverted] = useState(false);
-  const [converted, setConverted] = useState(true);
+  const [converted, setConverted] = useState(false);
   const [playlistUrl, setPlaylistUrl] = useState(null);
 
   const platform = Object.keys(finalPlaylist)[0];
   const access_token = finalPlaylist[platform];
 
   useEffect(() => {
-    // const platform = Object.keys(finalPlaylist)[0];
-    // const access_token = finalPlaylist[platform];
     if (playlistToConvert) {
       createNewPlaylist(platform, playlistToConvert, access_token).then(url => {
         setPlaylistUrl(url);
         setConverted(true);
       });
+    } else {
+      // Nothing to convert (e.g. page opened directly) — skip the loading state.
+      setConverted(true);
     }
   }, [platform, playlistToConvert, access_token]);
 

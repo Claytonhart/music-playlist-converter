@@ -1,6 +1,10 @@
 import axios from "axios";
+import { MOCK } from "../../config";
+import { mockGetListOfPlaylists } from "../../mocks/api";
 
 export default async function getSpotifyListOfPlaylists(accessToken) {
+  if (MOCK) return mockGetListOfPlaylists("Spotify");
+
   const url = `https://api.spotify.com/v1/me/playlists?limit=50`;
 
   const config = {

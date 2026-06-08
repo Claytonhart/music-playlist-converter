@@ -1,4 +1,6 @@
 import axios from "axios";
+import { MOCK } from "../../config";
+import { mockGetPlaylist } from "../../mocks/api";
 
 export default async function getDeezerPlaylist(
   userId,
@@ -6,6 +8,8 @@ export default async function getDeezerPlaylist(
   playlistHolder = [],
   nextDeezerUrl
 ) {
+  if (MOCK) return mockGetPlaylist("Deezer", userId);
+
   const proxy = `https://cors-anywhere.herokuapp.com/`;
   const deezerUrl = `${proxy}https://api.deezer.com/playlist/${userId}/tracks?access_token=${access_token}`;
 

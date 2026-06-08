@@ -1,6 +1,8 @@
 import React from "react";
 import napsterAuth from "../../auth/napsterAuth";
 import napsterTokenFromCode from "../../auth/napsterTokenFromCode";
+import { MOCK } from "../../config";
+import { mockAuthToken } from "../../mocks/api";
 
 const NapsterAuth = ({ setToken }) => {
   async function recieveNapsterMessage(event) {
@@ -12,6 +14,10 @@ const NapsterAuth = ({ setToken }) => {
   }
 
   function startNapsterAuth() {
+    if (MOCK) {
+      mockAuthToken("Napster").then(setToken);
+      return;
+    }
     napsterAuth(recieveNapsterMessage);
   }
 

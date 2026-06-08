@@ -1,6 +1,10 @@
 import axios from "axios";
+import { MOCK } from "../../config";
+import { mockGetListOfPlaylists } from "../../mocks/api";
 
 export default async function getYoutubeListOfPlaylists(accessToken) {
+  if (MOCK) return mockGetListOfPlaylists("Youtube");
+
   const config = {
     headers: {
       Authorization: `Bearer ${accessToken}`

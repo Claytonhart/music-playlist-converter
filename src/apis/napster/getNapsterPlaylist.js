@@ -1,4 +1,6 @@
 import axios from "axios";
+import { MOCK } from "../../config";
+import { mockGetPlaylist } from "../../mocks/api";
 
 export default async function getNapsterPlaylist(
   playlistId,
@@ -6,6 +8,8 @@ export default async function getNapsterPlaylist(
   playlistHolder = [],
   nextNapsterUrl
 ) {
+  if (MOCK) return mockGetPlaylist("Napster", playlistId);
+
   const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
   const napsterUrl = `https://api.napster.com/v2.2/playlists/${playlistId}/tracks?apikey=${apiKey}&limit=200`;
 

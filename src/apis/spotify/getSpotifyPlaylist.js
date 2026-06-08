@@ -1,5 +1,7 @@
 import axios from "axios";
 import getSpotifyUserId from "./getSpotifyUserId";
+import { MOCK } from "../../config";
+import { mockGetPlaylist } from "../../mocks/api";
 
 export default async function getSpotifyPlaylist(
   playlist_id,
@@ -8,6 +10,8 @@ export default async function getSpotifyPlaylist(
   nextSpotifyUrl,
   user_id
 ) {
+  if (MOCK) return mockGetPlaylist("Spotify", playlist_id);
+
   if (!user_id) {
     user_id = await getSpotifyUserId(accessToken);
   }

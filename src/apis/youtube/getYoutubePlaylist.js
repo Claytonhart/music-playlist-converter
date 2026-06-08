@@ -1,4 +1,6 @@
 import axios from "axios";
+import { MOCK } from "../../config";
+import { mockGetPlaylist } from "../../mocks/api";
 
 export default async function getYoutubePlaylist(
   id,
@@ -6,6 +8,8 @@ export default async function getYoutubePlaylist(
   pageToken = "",
   playlistHolder = []
 ) {
+  if (MOCK) return mockGetPlaylist("Youtube", id);
+
   const youtubeUrl = `https://www.googleapis.com/youtube/v3/playlistItems?
 			part=snippet&
 			maxResults=50&

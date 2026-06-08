@@ -1,15 +1,16 @@
 import React from "react";
+import { mockAuthToken } from "../../mocks/api";
 
 // NOTE: This component originally used `react-google-login` (preserved below
 // for the walkthrough). That library is deprecated and depends on Google's
 // `gapi` Platform Library, which Google fully shut down in 2023/2025 — so the
 // real flow no longer works regardless. It's replaced here with a plain button
-// matching the other platforms' auth shape. Phase 2 wires this to the mock
-// layer like the rest; for now it hands back a placeholder token so the
-// YouTube path stays demoable.
+// matching the other platforms' auth shape, wired to the mock layer like the
+// rest. (There's no real path to gate with MOCK here since the original
+// dependency is gone.)
 const YoutubeAuth = ({ setToken }) => {
   function startYoutubeAuth() {
-    setToken("mock-youtube-token");
+    mockAuthToken("Youtube").then(setToken);
   }
 
   return (

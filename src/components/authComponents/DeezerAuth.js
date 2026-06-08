@@ -1,5 +1,7 @@
 import React from "react";
 import deezerAuth from "../../auth/deezerAuth";
+import { MOCK } from "../../config";
+import { mockAuthToken } from "../../mocks/api";
 
 const DeezerAuth = ({ setToken }) => {
   function recieveDeezerMessage(event) {
@@ -10,6 +12,10 @@ const DeezerAuth = ({ setToken }) => {
   }
 
   function startDeezerAuth() {
+    if (MOCK) {
+      mockAuthToken("Deezer").then(setToken);
+      return;
+    }
     deezerAuth(recieveDeezerMessage);
   }
 

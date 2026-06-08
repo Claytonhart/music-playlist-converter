@@ -14,7 +14,12 @@ import addSongsToDeezerPlaylist from "../deezer/addSongsToDeezerPlaylist";
 import createNewDeezerPlaylist from "../deezer/createNewDeezerPlaylist";
 import postDeezerPlaylist from "../deezer/postDeezerPlaylist";
 
+import { MOCK } from "../../config";
+import { mockCreatePlaylist } from "../../mocks/api";
+
 const createNewPlaylist = async (platform, playlistToConvert, access_token) => {
+  if (MOCK) return mockCreatePlaylist(platform);
+
   switch (platform) {
     case "Youtube": {
       const playlist = await addSongsToYoutubePlaylist(
