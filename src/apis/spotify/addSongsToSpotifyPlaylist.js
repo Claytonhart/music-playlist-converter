@@ -9,24 +9,19 @@ export default async function addSongsToSpotifyPlaylist(
   let failedToParse = [];
 
   for (let song of initialPlaylist) {
-    console.log(song);
     if (song.hasOwnProperty("artistName")) {
       const { artistName, songName } = song;
       const result = await getSpotifySong(songName, artistName, accessToken);
 
-      debugger;
       if (result) {
         playlist.push({ id: result, title: `${artistName} - ${songName}` });
       } else {
         failedToFind.push(`${songName} - ${artistName}`);
       }
     } else {
-      console.log(song.title);
-      debugger;
       failedToParse.push(song.title);
     }
   }
-  debugger;
   return { playlist, failedToFind, failedToParse };
 }
 
@@ -49,6 +44,5 @@ async function getSpotifySong(songName, artistName, accessToken) {
     id = tracks.items[0].id;
   }
 
-  console.log(id);
   return id;
 }

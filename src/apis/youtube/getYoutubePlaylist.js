@@ -40,7 +40,6 @@ export default async function getYoutubePlaylist(
         .split("-");
     }
 
-    // debugger;
     if (song_array.length > 1) {
       const songName = song_array[song_array.length - 1].trim();
       const artistName = song_array[song_array.length - 2].trim();

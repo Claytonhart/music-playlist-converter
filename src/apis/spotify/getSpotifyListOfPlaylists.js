@@ -26,8 +26,6 @@ export default async function getSpotifyListOfPlaylists(accessToken) {
       name: playlist.name
     };
   });
-  debugger;
   return playlistToReturn;
-  // debugger;
   // return data;
 }

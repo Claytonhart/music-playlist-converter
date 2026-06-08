@@ -1,8 +1,16 @@
 import axios from "axios";
 
 async function napsterTokenFromCode(passedCode) {
-  const api_key = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
-  const api_secret = "OTI1YTcwMGYtNTljMS00ZmZiLWI4ZjQtMGFmMWU1MTUyMzFh";
+  // SECURITY NOTE: this OAuth token exchange (which requires a client secret)
+  // was originally done in the browser with the secret hardcoded in source —
+  // a real client secret committed to a public repo. That's an anti-pattern:
+  // a client secret must never ship to a frontend. The correct fix is to do
+  // this exchange on a backend the user can't read, and have the client call
+  // that backend. The committed secret has since been revoked; the values are
+  // read from env here only so the original (now non-functional) flow stays
+  // illustrative. See .env.example.
+  const api_key = import.meta.env.VITE_NAPSTER_API_KEY || "";
+  const api_secret = import.meta.env.VITE_NAPSTER_API_SECRET || "";
 
   const url = `https://api.napster.com/oauth/access_token`;
 

@@ -5,7 +5,6 @@ export default async function postYoutubePlaylist(
   accessToken,
   playlistId
 ) {
-  debugger;
   const url = `https://www.googleapis.com/youtube/v3/playlistItems`;
   const config = {
     headers: {
@@ -18,7 +17,6 @@ export default async function postYoutubePlaylist(
   const youtubeUrl = `${url}?${part}`;
 
   for (let video of youtubeUriPlaylist) {
-    debugger;
     let { id } = video;
     let snippet = {
       snippet: {
@@ -29,7 +27,5 @@ export default async function postYoutubePlaylist(
     let result = await axios.post(youtubeUrl, snippet, config);
     // axios.post(youtubeUrl, snippet, config);
 
-    debugger;
-    console.log(result);
   }
 }

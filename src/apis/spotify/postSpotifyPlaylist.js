@@ -11,7 +11,6 @@ export default async function postSpotifyPlaylist(
     for (let j = 0; j < 100; j++) {
       if (spotifyUriPlaylist[j + i]) {
         tempArray.push(`spotify:track:${spotifyUriPlaylist[j + i].id}`);
-        // console.log("j + i: " + (j + i))
       }
     }
     tempPlaylist.push(tempArray);
@@ -30,7 +29,5 @@ export default async function postSpotifyPlaylist(
     };
 
     let result = await axios.post(url, JSON.stringify(body), config);
-    console.log(result);
   }
-  console.log(tempPlaylist);
 }

@@ -15,7 +15,6 @@ export default async function getSpotifyPlaylist(
   if (!user_id) {
     user_id = await getSpotifyUserId(accessToken);
   }
-  debugger;
   const spotifyUrl = `
 		https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`;
 
@@ -26,9 +25,7 @@ export default async function getSpotifyPlaylist(
   };
 
   const response = await axios.get(nextSpotifyUrl || spotifyUrl, config);
-  // debugger;
   const { data } = response;
-  // debugger;
 
   const { next } = data;
   const playlist = data.items.map(item => {
@@ -40,7 +37,6 @@ export default async function getSpotifyPlaylist(
 
     return { artistName, songName };
   });
-  debugger;
 
   playlistHolder.push(...playlist);
 

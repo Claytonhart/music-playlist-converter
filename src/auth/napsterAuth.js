@@ -5,7 +5,7 @@ function napsterAuth(recNapsterMessage) {
 
   mountAuthEventListener();
 
-  const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
+  const apiKey = import.meta.env.VITE_NAPSTER_API_KEY || "";
   const urlString = `https://api.napster.com/oauth/authorize?
 		client_id=${apiKey}&
 		redirect_uri=http://localhost:3000/auth&

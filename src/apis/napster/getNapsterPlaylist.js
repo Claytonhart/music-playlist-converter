@@ -10,7 +10,7 @@ export default async function getNapsterPlaylist(
 ) {
   if (MOCK) return mockGetPlaylist("Napster", playlistId);
 
-  const apiKey = "MmJjOTkxN2YtYzg0YS00OGI5LWI3ZDgtZTYyYzFkZjU4NjZi";
+  const apiKey = import.meta.env.VITE_NAPSTER_API_KEY || "";
   const napsterUrl = `https://api.napster.com/v2.2/playlists/${playlistId}/tracks?apikey=${apiKey}&limit=200`;
 
   const config = {
