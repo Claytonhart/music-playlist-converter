@@ -34,7 +34,7 @@ export default YoutubeAuth;
 
     return (
       <YoutubeLogin
-        clientId="765030499566-0hfptahsbp45p3pj9f5dqlj6ibot8lj6.apps.googleusercontent.com"
+        clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
         render={renderProps => (
           <button
             className="btn"

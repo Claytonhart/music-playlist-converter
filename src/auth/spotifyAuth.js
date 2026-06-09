@@ -7,7 +7,7 @@ const spotifyAuth = recSpotifyMessage => {
 
   const url = {
     authEndpoint: "https://accounts.spotify.com/authorize/",
-    client_id: "a1815cf4ff774ceab02396566991a600",
+    client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID || "",
     redirect_uri: `http://localhost:3000/auth`,
     scope:
       "playlist-modify-public playlist-modify-private playlist-read-private",
