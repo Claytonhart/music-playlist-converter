@@ -1,5 +1,7 @@
 import React from "react";
 
+import TrackCover from "./TrackCover";
+
 /*
 playlist is an array of objects with keys of artistName and songName
 */
@@ -18,6 +20,10 @@ const ConvertedPlaylist = ({ playlistUrl, playlist, platform }) => {
         {tracks.map((song, i) => (
           <li key={song.songName + song.artistName} className="track">
             <span className="track__num">{String(i + 1).padStart(2, "0")}</span>
+            <TrackCover
+              artistName={song.artistName}
+              songName={song.songName}
+            />
             <span className="track__artist">{song.artistName}</span>
             <span className="track__song">{song.songName}</span>
           </li>
