@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import createNewPlaylist from "../apis/allApis/createNewPlaylist";
 import ConvertedPlaylist from "./ConvertedPlaylist";
@@ -69,9 +70,9 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
                 Open new playlist <span>&rarr;</span>
               </a>
             )}
-            <a href="/" className="btn btn-ghost">
+            <Link to="/" className="btn btn-ghost">
               Convert another
-            </a>
+            </Link>
           </div>
           <ConvertedPlaylist
             playlistUrl={playlistUrl}
