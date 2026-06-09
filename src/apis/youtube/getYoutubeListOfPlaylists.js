@@ -11,7 +11,8 @@ export default async function getYoutubeListOfPlaylists(accessToken) {
     }
   };
 
-  const url = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=AIzaSyDwFUK-ngQ3FkrX6taZoQKd7tupYbO7odE&maxResults=50`;
+  const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY || "";
+  const url = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=${apiKey}&maxResults=50`;
 
   let response = await axios.get(url, config);
   let { data } = response;

@@ -10,11 +10,12 @@ export default async function getYoutubePlaylist(
 ) {
   if (MOCK) return mockGetPlaylist("Youtube", id);
 
+  const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY || "";
   const youtubeUrl = `https://www.googleapis.com/youtube/v3/playlistItems?
 			part=snippet&
 			maxResults=50&
 			playlistId=${id}&
-			key=AIzaSyDwFUK-ngQ3FkrX6taZoQKd7tupYbO7odE&
+			key=${apiKey}&
       fields=items(snippet(title,resourceId(videoId))),nextPageToken${pageToken}`;
 
   const config = {
