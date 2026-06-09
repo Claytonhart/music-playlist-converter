@@ -1,64 +1,94 @@
-.platform-list-item {
-  cursor: pointer;
+@use "../base/variables" as *;
+
+.platform-tile {
+  --brand: #{$accent};
+
+  position: relative;
   display: flex;
-  // max-width: 50rem;
-  list-style: none;
-  padding: 1.4rem;
   align-items: center;
-  // margin: 2rem auto;
-  background-color: #fff;
-  font-size: 2rem;
-  border: 1px solid gainsboro;
-
-  transition: all 0.5s;
-
-  &__Spotify {
-    background: linear-gradient(270deg, #07d165 50%, #fff 0);
-    background-size: 201% 100%;
-    background-position: 0 100%;
-  }
-
-  &__Youtube {
-    background: linear-gradient(270deg, red 50%, #fff 0);
-    background-size: 201% 100%;
-    background-position: 0 100%;
-  }
-
-  &__Napster {
-    background: linear-gradient(270deg, black 50%, #fff 0);
-    background-size: 201% 100%;
-    background-position: 0 100%;
-  }
-
-  &__Deezer {
-    background: linear-gradient(270deg, #02b5c8 50%, #fff 0);
-    background-size: 201% 100%;
-    background-position: 0 100%;
-  }
+  gap: 1.4rem;
+  padding: 1.2rem 1.4rem;
+  list-style: none;
+  cursor: pointer;
+  border-radius: $r-md;
+  background: $surface;
+  border: 1px solid $border;
+  transition: background-color 0.25s $ease, border-color 0.25s $ease,
+    transform 0.25s $ease, box-shadow 0.25s $ease;
 
   &:not(:last-of-type) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
   }
 
-  &__content {
-    margin: 0 auto;
-    transition: transform 0.5s;
+  &:hover {
+    transform: translateY(-2px);
+    background: $surface-hover;
+    border-color: $border-strong;
   }
-}
 
-.active {
-  background-position: 100% 100%;
-  color: #fff;
-  border: 1px solid transparent;
+  // Brand colours per platform (drive the active glow + check).
+  &--Spotify  { --brand: #{$spotify}; }
+  &--Youtube  { --brand: #{$youtube}; }
+  &--Napster  { --brand: #{$napster}; }
+  &--Deezer   { --brand: #{$deezer}; }
 
-  > .platform-list-item__img {
+  // Light chip so every brand logo (incl. black Napster) reads on dark.
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    flex-shrink: 0;
+    border-radius: $r-sm;
+    background: #fff;
+
+    img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: contain;
+    }
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 1.9rem;
+    color: $text;
+  }
+
+  // Check badge — hidden until selected.
+  &__check {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--brand);
+    border: 1px solid var(--brand);
     opacity: 0;
-    transition-delay: 0.4s;
-    transition-duration: 0.1s;
+    transform: scale(0.6);
+    transition: opacity 0.25s $ease, transform 0.25s $ease;
   }
 
-  > .platform-list-item__content {
-    transform: translateX(-32px);
-    transition: transform 0.5s;
+  // ── Selected state ──
+  &.active {
+    background: color-mix(in srgb, var(--brand) 12%, $surface);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 1px var(--brand),
+      0 12px 34px color-mix(in srgb, var(--brand) 30%, transparent);
+
+    .platform-tile__icon {
+      box-shadow: 0 0 22px color-mix(in srgb, var(--brand) 55%, transparent);
+    }
+
+    .platform-tile__check {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }

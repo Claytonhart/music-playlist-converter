@@ -5,43 +5,26 @@ import YoutubeIcon from "../images/youtube.png";
 import DeezerIcon from "../images/deezer.png";
 import NapsterIcon from "../images/napster.png";
 
-const PlatformListItem = ({ content, setActive, active }) => {
-  const platforms = {
-    Spotify: { color: "green", img: SpotifyIcon },
-    Youtube: { color: "red", img: YoutubeIcon },
-    Deezer: { color: "orange", img: DeezerIcon },
-    Napster: { color: "black", img: NapsterIcon }
-  };
+const ICONS = {
+  Spotify: SpotifyIcon,
+  Youtube: YoutubeIcon,
+  Deezer: DeezerIcon,
+  Napster: NapsterIcon
+};
 
-  if (active)
-    return (
-      <li
-        onClick={setActive}
-        className={`platform-list-item platform-list-item__${content} ${active}`}
-      >
-        <div className="platform-list-item__img">
-          <img
-            src={platforms[content].img}
-            alt="spotify logo"
-            style={{ width: "64px", height: "64px" }}
-          />
-        </div>
-        <div className="platform-list-item__content">{content}</div>
-      </li>
-    );
+const PlatformListItem = ({ content, setActive, active }) => {
   return (
     <li
       onClick={setActive}
-      className={`platform-list-item platform-list-item__${content}`}
+      className={`platform-tile platform-tile--${content} ${active || ""}`}
     >
-      <div className="platform-list-item__img">
-        <img
-          src={platforms[content].img}
-          alt="spotify logo"
-          style={{ width: "64px", height: "64px" }}
-        />
-      </div>
-      <div className="platform-list-item__content">{content}</div>
+      <span className="platform-tile__icon">
+        <img src={ICONS[content]} alt={`${content} logo`} />
+      </span>
+      <span className="platform-tile__name">{content}</span>
+      <span className="platform-tile__check" aria-hidden="true">
+        ✓
+      </span>
     </li>
   );
 };

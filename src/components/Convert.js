@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 import PlatformList from "./PlatformList";
+import StepIndicator from "./StepIndicator";
 import SpotifyAuth from "./authComponents/SpotifyAuth";
 import YoutubeAuth from "./authComponents/YoutubeAuth";
 import NapsterAuth from "./authComponents/NapsterAuth";
@@ -68,18 +68,33 @@ const Convert = ({ history, setInitialPlaylist, setFinalPlaylist }) => {
   };
 
   return (
-    <section className="convert">
-      <h3 className="convert__header">Choose your platforms</h3>
+    <section className="panel convert">
+      <StepIndicator current={1} />
+      <div className="panel__head">
+        <h3>Choose your platforms</h3>
+        <span className="panel__eyebrow">Import from one · rebuild on another</span>
+      </div>
       <div className="playlists-container">
-        <div className="playlists-container__left">
-          <PlatformList setActive={setActiveFrom} active={activeFrom} />
-          <div className="playlists-container__button">
-            {fromButtonToRender}
+        <div className="convert-column">
+          <div className="convert-column__label">
+            <strong>From</strong>
+            <span>where your playlist lives</span>
           </div>
+          <PlatformList setActive={setActiveFrom} active={activeFrom} />
+          <div className="convert-column__action">{fromButtonToRender}</div>
         </div>
-        <div className="playlists-container__right">
+
+        <div className="convert-connector" aria-hidden="true">
+          &rarr;
+        </div>
+
+        <div className="convert-column">
+          <div className="convert-column__label">
+            <strong>To</strong>
+            <span>where it's going</span>
+          </div>
           <PlatformList setActive={setActiveTo} active={activeTo} />
-          <div className="playlists-container__button">{toButtonToRender}</div>
+          <div className="convert-column__action">{toButtonToRender}</div>
         </div>
       </div>
       {error && (
@@ -88,11 +103,11 @@ const Convert = ({ history, setInitialPlaylist, setFinalPlaylist }) => {
         </p>
       )}
       {activeFrom && tokenFrom && activeTo && tokenTo ? (
-        // <Link to="/choose" className="convert__next-button">
-        //   Continue &nbsp;<span>&rarr;</span>
-        // </Link>
-        <button onClick={goToPlaylistsList} className="convert__next-button">
-          Continue &nbsp;<span>&rarr;</span>
+        <button
+          onClick={goToPlaylistsList}
+          className="btn convert__next-button"
+        >
+          Continue <span>&rarr;</span>
         </button>
       ) : null}
     </section>

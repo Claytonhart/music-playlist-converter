@@ -1,38 +1,76 @@
 @use "../base/variables" as *;
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2rem;
-  background-color: #fff;
-  color: $primary-green;
-  z-index: 10;
-
-  transition: all 0.2s;
-
-  &__item {
-    border-bottom: 1px solid transparent;
-    cursor: pointer;
-
-    &:hover {
-      color: $primary-green-dark;
-      border-bottom: 1px solid $primary-green;
-    }
-  }
+  padding: 1.6rem clamp(2rem, 5vw, 5rem);
+  background: rgba(11, 12, 16, 0.6);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid $border;
 
   &__logo {
     display: flex;
     align-items: center;
-    font-size: 2.8rem;
+    gap: 1.1rem;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    color: $text;
     text-transform: uppercase;
 
     @media only screen and (max-width: 37.5em) {
-      font-size: 2.3rem;
+      font-size: 1.7rem;
+    }
+  }
+
+  // Animated equalizer mark next to the wordmark.
+  &__mark {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 2.2rem;
+
+    span {
+      width: 3px;
+      border-radius: $r-pill;
+      background: $accent;
+      box-shadow: 0 0 10px $accent-glow;
+      animation: eq 1.1s $ease infinite alternate;
+
+      &:nth-child(1) { height: 40%; animation-delay: 0s; }
+      &:nth-child(2) { height: 90%; animation-delay: 0.18s; }
+      &:nth-child(3) { height: 60%; animation-delay: 0.36s; }
+      &:nth-child(4) { height: 100%; animation-delay: 0.12s; }
     }
   }
 
   &__convert {
-    font-size: 1.8rem;
+    font-family: $font-mono;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $text-dim;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid $border;
+    border-radius: $r-pill;
+    transition: color 0.25s $ease, border-color 0.25s $ease,
+      background-color 0.25s $ease;
+
+    &:hover {
+      color: $accent-bright;
+      border-color: rgba(200, 240, 46, 0.5);
+      background-color: $accent-soft;
+    }
   }
+}
+
+@keyframes eq {
+  from { transform: scaleY(0.4); }
+  to   { transform: scaleY(1); }
 }

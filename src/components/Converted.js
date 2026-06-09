@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import createNewPlaylist from "../apis/allApis/createNewPlaylist";
 import ConvertedPlaylist from "./ConvertedPlaylist";
+import StepIndicator from "./StepIndicator";
 
 /*
   finalPlaylist is an object with key of platform name and value of access_token
@@ -27,26 +28,50 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
   }, [platform, playlistToConvert, access_token]);
 
   return (
-    <div className="converted">
+    <div className="panel converted">
       {!converted ? (
-        <div className="converted-container__header">
-          Converting your music... Please wait, sometimes this can take a few
-          minutes
+        <div className="converting">
+          <div className="converting__bars" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+          <h2 className="converting__title">Converting your music…</h2>
+          <p className="converting__sub">
+            Matching every track on {platform}. This can take a moment for
+            larger playlists — hang tight.
+          </p>
         </div>
       ) : (
         <>
-          <div className="converted__top">
-            <div className="converted-container">
-              <h2 className="converted-container__header">
-                Your {platform} Playlist has been converted
-              </h2>
-              <p className="converted-container__desc">
-                Thank you for using Playlist Converter
-                <span>
-                  <a href="/">convert another playlist?</a>
-                </span>
-              </p>
-            </div>
+          <StepIndicator current={3} />
+          <div className="converted__badge" aria-hidden="true">
+            ✓
+          </div>
+          <h2 className="converted__title">
+            Your {platform} playlist is ready
+          </h2>
+          <p className="converted__sub">
+            Thanks for using Playlist Converter.
+          </p>
+          <div className="converted__actions">
+            {playlistUrl && (
+              <a
+                className="btn"
+                href={playlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open new playlist <span>&rarr;</span>
+              </a>
+            )}
+            <a href="/" className="btn btn-ghost">
+              Convert another
+            </a>
           </div>
           <ConvertedPlaylist
             playlistUrl={playlistUrl}

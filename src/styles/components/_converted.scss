@@ -3,131 +3,176 @@
 .converted {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  // background-color: #fff;
-  background-color: $primary-green;
-  color: #fff;
-  width: 80%;
-  max-width: 120rem;
-  margin: 0 auto;
-  margin-top: 12rem;
-  border-radius: 3px;
-  overflow: hidden;
+  align-items: center;
 
-  @media only screen and (max-width: 62.5em) {
-    margin-top: 8rem;
-    margin-bottom: 4rem;
+  // ── Success badge ──
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6.4rem;
+    height: 6.4rem;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    font-size: 2.8rem;
+    color: $ink;
+    background: $accent;
+    box-shadow: 0 0 0 8px $accent-soft, 0 0 40px $accent-glow;
+    animation: pop 0.5s $ease both;
   }
 
-  @media only screen and (max-width: 37.5em) {
-    width: 90%;
+  &__title {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 4.4vw, 4rem);
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: $text;
   }
 
-  &__bottom {
-    background-color: #fff;
-    color: $primary-green;
-    height: 45rem;
-    overflow: auto;
+  &__sub {
+    margin-top: 1rem;
+    font-size: 1.7rem;
+    color: $text-dim;
+    text-align: center;
+  }
 
-    &--scroll::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &--scroll::-webkit-scrollbar-track {
-      background: #ddd;
-    }
-
-    &--scroll::-webkit-scrollbar-thumb {
-      background: #666666;
-    }
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    margin: 2.8rem 0 1rem;
   }
 }
 
-.converted-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // height: 30vh;
+// ── Track list ────────────────────────────────────────────────
+.track-list {
+  width: 100%;
+  margin-top: 3rem;
+  border-top: 1px solid $border;
+  padding-top: 2rem;
 
-  &__header {
-    text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    font-size: 4.8rem;
-    font-weight: 300;
-
-    @media only screen and (max-width: 62.5em) {
-      font-size: 3.6rem;
-      width: 90%;
-      margin: 4rem auto;
-    }
-  }
-
-  &__desc {
-    font-size: 2rem;
-    padding: 2rem;
-    margin-bottom: 2rem;
-
+  &__head {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.4rem;
 
-    @media only screen and (max-width: 37.5em) {
-      flex-direction: column;
-      text-align: center;
-      line-height: 1.8;
-      margin-bottom: 0;
-    }
-
-    span a {
+    h3 {
+      font-family: $font-mono;
+      font-size: 1.3rem;
       font-weight: 700;
-      text-decoration: underline;
-      padding-left: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $accent;
     }
+
+    span {
+      font-family: $font-mono;
+      font-size: 1.3rem;
+      color: $text-faint;
+    }
+  }
+
+  &__scroll {
+    list-style: none;
+    max-height: 38rem;
+    overflow-y: auto;
+    padding-right: 0.6rem;
   }
 }
 
-.converted-header {
-  padding: 2rem;
-  border-bottom: 1px solid $primary-green;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+.track {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: $r-sm;
+  transition: background-color 0.2s $ease;
 
-  &__link {
-    cursor: pointer;
-    text-decoration: underline;
+  &:hover {
+    background: $surface;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  &__num {
+    font-family: $font-mono;
+    font-size: 1.3rem;
+    color: $text-faint;
+    width: 2.6rem;
+    flex-shrink: 0;
+  }
+
+  &__artist {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: $text;
+  }
+
+  &__song {
+    font-size: 1.6rem;
+    color: $text-dim;
+
+    &::before {
+      content: "·";
+      margin: 0 0.8rem;
+      color: $text-faint;
+    }
+  }
+}
+
+// ── Loading state ─────────────────────────────────────────────
+.converting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 0;
+
+  &__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 6rem;
+    margin-bottom: 2.8rem;
+
+    span {
+      width: 6px;
+      border-radius: $r-pill;
+      background: linear-gradient(180deg, $accent, rgba(200, 240, 46, 0.3));
+      box-shadow: 0 0 14px $accent-glow;
+      animation: wave 1s $ease infinite alternate;
+
+      &:nth-child(1) { animation-delay: 0s; }
+      &:nth-child(2) { animation-delay: 0.15s; }
+      &:nth-child(3) { animation-delay: 0.3s; }
+      &:nth-child(4) { animation-delay: 0.45s; }
+      &:nth-child(5) { animation-delay: 0.2s; }
+      &:nth-child(6) { animation-delay: 0.35s; }
+      &:nth-child(7) { animation-delay: 0.1s; }
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
     font-weight: 700;
-
-    @media only screen and (max-width: 37.5em) {
-      font-size: 1.8rem;
-    }
+    font-size: 2.6rem;
+    color: $text;
+    margin-bottom: 0.8rem;
   }
 
-  &__header {
-    @media only screen and (max-width: 37.5em) {
-      font-size: 2rem;
-    }
-  }
-}
-
-.converted-playlist-list {
-  list-style: none;
-  padding: 2rem;
-  max-width: 80%;
-  margin: 0 auto;
-
-  @media only screen and (max-width: 37.5em) {
-    max-width: 90%;
+  &__sub {
+    font-size: 1.6rem;
+    color: $text-dim;
+    max-width: 42ch;
   }
 }
 
-.converted-playlist-list-item {
-  padding: 2rem;
-  border: 1px solid $primary-green;
-  font-size: 2rem;
-
-  &:not(:last-of-type) {
-    margin-bottom: 1rem;
-  }
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
 }

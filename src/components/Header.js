@@ -5,6 +5,12 @@ const Header = () => {
   return (
     <header className="header">
       <Link to="/" className="header__item header__logo">
+        <span className="header__mark" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </span>
         Playlist Converter
       </Link>
       <div>

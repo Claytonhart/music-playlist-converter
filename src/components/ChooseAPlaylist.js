@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import PlaylistsList from "./PlaylistsList";
+import StepIndicator from "./StepIndicator";
 
 import getSpotifyListOfPlaylists from "../apis/spotify/getSpotifyListOfPlaylists";
 import getYoutubeListOfPlaylists from "../apis/youtube/getYoutubeListOfPlaylists";
@@ -40,8 +41,12 @@ const ChooseAPlaylist = ({ initialPlaylist, setPlaylistToConvert }) => {
   }, [access_token, platform]);
 
   return (
-    <div className="choose-playlist">
-      <h1 className="choose-playlist__header">Choose a playlist to convert</h1>
+    <div className="panel choose-playlist">
+      <StepIndicator current={2} />
+      <div className="panel__head">
+        <h1>Choose a playlist to convert</h1>
+        <span className="panel__eyebrow">From your {platform} library</span>
+      </div>
       <PlaylistsList
         listOfPlaylists={listOfPlaylists}
         access_token={access_token}

@@ -11,6 +11,7 @@ import history from "./history";
 function App() {
   return (
     <div className="app-container">
+      <div className="app-bg" aria-hidden="true" />
       <Router history={history}>
         <Header />
         <Main></Main>

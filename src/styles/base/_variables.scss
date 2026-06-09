@@ -1,10 +1,53 @@
-$primary-white: #ececec;
-$primary-grey: #6c7a89;
-$primary-grey-light-1: #f4f2f2;
-$primary-blue-dark: #22313f;
-$primary-blue: #2c3e50;
-$primary-blue-light: #67809f;
-$primary-red: #9f6780;
+// ───────────────────────────────────────────────────────────────
+//  Design tokens — "Dark studio + neon"
+//  A near-black studio canvas, glassy surfaces, one electric-lime
+//  accent, and each music platform's brand colour reserved for its
+//  selected/active state. Everything else pulls from these vars.
+// ───────────────────────────────────────────────────────────────
 
-$primary-green: #3a503b;
-$primary-green-dark: #223023;
+// ── Surfaces ───────────────────────────────────────────────────
+$bg:            #0b0c10; // canvas
+$bg-raised:     #111319; // panels behind glass
+$surface:       rgba(255, 255, 255, 0.035); // glass fill
+$surface-hover: rgba(255, 255, 255, 0.07);
+$surface-2:     rgba(255, 255, 255, 0.05);
+$border:        rgba(255, 255, 255, 0.09);
+$border-strong: rgba(255, 255, 255, 0.18);
+
+// ── Text ───────────────────────────────────────────────────────
+$text:       #f3f5f2;
+$text-dim:   #a6adb4;
+$text-faint: #6a7077;
+
+// ── Accent (electric lime) ─────────────────────────────────────
+$accent:        #c8f02e;
+$accent-bright: #d8ff45;
+$accent-soft:   rgba(200, 240, 46, 0.14);
+$accent-glow:   rgba(200, 240, 46, 0.40);
+$ink:           #0b0c10; // text that sits on the accent
+
+// ── Platform brand colours (used for active/selected glow) ─────
+$spotify: #1ed760;
+$youtube: #ff0033;
+$napster: #e9e9ec; // logo is black; on dark we glow it near-white
+$deezer:  #a25bff;
+
+// ── Typography ─────────────────────────────────────────────────
+$font-display: "Bricolage Grotesque", "Hanken Grotesk", sans-serif;
+$font-body:    "Hanken Grotesk", -apple-system, sans-serif;
+$font-mono:    "Space Mono", ui-monospace, monospace;
+
+// ── Radius ─────────────────────────────────────────────────────
+$r-sm:   10px;
+$r-md:   16px;
+$r-lg:   24px;
+$r-pill: 999px;
+
+// ── Shadows ────────────────────────────────────────────────────
+$shadow-1:    0 2px 10px rgba(0, 0, 0, 0.45);
+$shadow-2:    0 24px 60px rgba(0, 0, 0, 0.55);
+$shadow-glow: 0 0 48px rgba(200, 240, 46, 0.18);
+
+// ── Motion ─────────────────────────────────────────────────────
+$ease:     cubic-bezier(0.22, 1, 0.36, 1);
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);

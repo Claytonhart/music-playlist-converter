@@ -1,84 +1,185 @@
+@use "../base/variables" as *;
+
 .app-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  &:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    background-image: url("/images/landing-bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: blur(2px);
-  }
 }
 
 .main {
   flex: 1;
-  position: relative;
-}
-
-.landing {
-  color: #fff;
-  position: absolute;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: space-between;
-  width: 40%;
-  left: 5%;
-  top: 26%;
+}
 
-  @media only screen and (max-width: 62.5em) {
-    width: 85%;
-    top: 20%;
-    margin: 0 auto;
-    position: relative;
-    left: unset;
+// ── Landing / hero ────────────────────────────────────────────
+.landing {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  max-width: 132rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 9rem) clamp(2rem, 6vw, 8rem);
+
+  @media only screen and (max-width: 56.25em) {
+    grid-template-columns: 1fr;
+    text-align: left;
   }
 
-  @media only screen and (max-width: 68.75em) {
-    font-size: 50%;
+  &__copy > * {
+    opacity: 0;
+    animation: rise 0.9s $ease-out forwards;
+  }
+  &__copy > *:nth-child(1) { animation-delay: 0.05s; }
+  &__copy > *:nth-child(2) { animation-delay: 0.18s; }
+  &__copy > *:nth-child(3) { animation-delay: 0.31s; }
+  &__copy > *:nth-child(4) { animation-delay: 0.44s; }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: $font-mono;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $accent;
+    margin-bottom: 2.6rem;
+
+    &::before {
+      content: "";
+      width: 3rem;
+      height: 1px;
+      background: $accent;
+      box-shadow: 0 0 12px $accent-glow;
+    }
   }
 
   &__header {
-    font-size: 8.2rem;
-    font-weight: 300;
-    margin-bottom: 1.4rem;
-    line-height: 1;
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: clamp(4.4rem, 7vw, 8.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: $text;
+    margin-bottom: 2.4rem;
 
-    @media only screen and (max-width: 37.5em) {
-      font-size: 6rem;
+    em {
+      font-style: normal;
+      color: $accent;
+      // subtle glow under the accent word
+      text-shadow: 0 0 38px rgba(200, 240, 46, 0.35);
     }
   }
 
   &__desc {
-    font-size: 2.2rem;
-    color: #dbdbdb;
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: $text-dim;
+    max-width: 46ch;
+    margin-bottom: 3.4rem;
+    line-height: 1.55;
   }
 
   &__btn {
-    flex-grow: 0;
-    padding: 1.6rem 2.8rem;
-    transition: all 0.2s;
+    font-size: 1.8rem;
+    padding: 1.5rem 2.8rem;
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+    span {
+      transition: transform 0.25s $ease;
     }
-
-    &:active,
-    &:focus {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4);
+    &:hover span {
+      transform: translateX(4px);
     }
   }
+}
+
+// ── Decorative visual: a glassy "now converting" card + bars ──
+.landing-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38rem;
+  opacity: 0;
+  animation: rise 1s $ease-out 0.4s forwards;
+
+  @media only screen and (max-width: 56.25em) {
+    min-height: 26rem;
+  }
+
+  // soft glow puddle behind the card
+  &::before {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(200, 240, 46, 0.18), transparent 70%);
+    filter: blur(20px);
+  }
+
+  &__card {
+    position: relative;
+    width: min(38rem, 100%);
+    padding: 3rem;
+    border-radius: $r-lg;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid $border-strong;
+    box-shadow: $shadow-2;
+    backdrop-filter: blur(10px);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    font-family: $font-mono;
+    font-size: 1.4rem;
+    color: $text-dim;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid $border;
+    }
+
+    b {
+      color: $text;
+      font-family: $font-body;
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px currentColor;
+  }
+
+  // animated waveform across the bottom of the card
+  &__wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 5rem;
+    margin-top: 2.4rem;
+
+    span {
+      flex: 1;
+      border-radius: $r-pill;
+      background: linear-gradient(180deg, $accent, rgba(200, 240, 46, 0.3));
+      animation: wave 1.4s $ease infinite alternate;
+    }
+  }
+}
+
+@keyframes wave {
+  from { height: 16%; opacity: 0.5; }
+  to   { height: 100%; opacity: 1; }
 }

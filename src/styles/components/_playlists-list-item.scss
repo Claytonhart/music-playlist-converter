@@ -1,18 +1,102 @@
-.playlist-item {
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 1px solid gainsboro;
-  font-size: 2rem;
-  flex-basis: 40%;
-  display: flex;
-  justify-content: space-between;
+@use "../base/variables" as *;
 
-  @media only screen and (max-width: 62.5em) {
-    flex-basis: 45%;
+.playlist-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1.6rem 1.8rem;
+  border-radius: $r-md;
+  background: $surface;
+  border: 1px solid $border;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.25s $ease, border-color 0.25s $ease,
+    transform 0.25s $ease;
+
+  // accent edge that slides in on hover
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: $accent;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s $ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: $surface-hover;
+    border-color: $border-strong;
+
+    &::before {
+      transform: scaleY(1);
+    }
+
+    .playlist-item__go {
+      color: $accent;
+      transform: translateX(3px);
+    }
+  }
+
+  // disc / vinyl icon chip
+  &__disc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, $bg-raised 30%, rgba(255, 255, 255, 0.08) 31%, $bg-raised 36%, $bg-raised 100%);
+    border: 1px solid $border;
+
+    &::after {
+      content: "";
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background: $accent;
+      box-shadow: 0 0 10px $accent-glow;
+    }
   }
 
   &__title {
-    cursor: pointer;
-    padding-left: 1rem;
+    flex: 1;
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: $text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__go {
+    font-size: 1.8rem;
+    color: $text-faint;
+    transition: color 0.25s $ease, transform 0.25s $ease;
+  }
+
+  // external-link button to open the original playlist
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: $r-sm;
+    color: $text-faint;
+    font-size: 1.5rem;
+    transition: color 0.25s $ease, background-color 0.25s $ease;
+
+    &:hover {
+      color: $text;
+      background: $surface-2;
+    }
   }
 }
