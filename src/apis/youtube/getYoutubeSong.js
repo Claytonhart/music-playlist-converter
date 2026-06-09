@@ -1,4 +1,5 @@
 import axios from "axios";
+import matchTrack from "../../matching/matchTrack";
 
 export default async function getYoutubeSong(
   songName,
@@ -6,10 +7,8 @@ export default async function getYoutubeSong(
   accessToken
 ) {
   const url = "https://www.googleapis.com/youtube/v3/search";
-  const q = `${artistName} - ${songName}`;
-  const type = "video";
-
-  const youtubeUrl = `${url}?part=snippet&q=${q}&type=${type}`;
+  const q = encodeURIComponent(`${artistName} - ${songName}`);
+  const youtubeUrl = `${url}?part=snippet&q=${q}&type=video&maxResults=5`;
 
   const config = {
     headers: {
@@ -18,9 +17,15 @@ export default async function getYoutubeSong(
     }
   };
 
-  let ytResponse = await axios.get(youtubeUrl, config);
+  const ytResponse = await axios.get(youtubeUrl, config);
 
-  let id = ytResponse.data.items[0].id;
+  // YouTube search results carry no structured artist/duration, so the matcher
+  // scores off the video title (typically "Artist - Song").
+  const candidates = (ytResponse.data.items || []).map(item => ({
+    id: item.id,
+    title: item.snippet && item.snippet.title
+  }));
 
-  return id;
+  const match = matchTrack({ songName, artistName }, candidates);
+  return match ? match.id : candidates[0] && candidates[0].id;
 }

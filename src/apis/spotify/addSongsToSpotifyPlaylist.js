@@ -1,4 +1,5 @@
 import axios from "axios";
+import matchTrack from "../../matching/matchTrack";
 
 export default async function addSongsToSpotifyPlaylist(
   initialPlaylist,
@@ -26,10 +27,10 @@ export default async function addSongsToSpotifyPlaylist(
 }
 
 async function getSpotifySong(songName, artistName, accessToken) {
-  const songUrl = `https://api.spotify.com/v1/search?q=
-		artist:"${artistName}"%20
-		track:${songName}&
-		type=track`;
+  // Pull several candidates and let the matcher choose, rather than trusting
+  // that Spotify's top hit is the right recording.
+  const query = encodeURIComponent(`artist:"${artistName}" track:${songName}`);
+  const songUrl = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=5`;
 
   const config = {
     headers: {
@@ -38,11 +39,13 @@ async function getSpotifySong(songName, artistName, accessToken) {
   };
 
   const request = await axios.get(songUrl, config);
-  const tracks = request.data.tracks;
-  let id;
-  if (tracks.items[0]) {
-    id = tracks.items[0].id;
-  }
+  const candidates = (request.data.tracks.items || []).map(item => ({
+    id: item.id,
+    title: item.name,
+    artist: item.artists && item.artists[0] && item.artists[0].name,
+    durationMs: item.duration_ms
+  }));
 
-  return id;
+  const match = matchTrack({ songName, artistName }, candidates);
+  return match ? match.id : undefined;
 }

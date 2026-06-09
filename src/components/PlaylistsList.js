@@ -22,29 +22,29 @@ const PlaylistsList = ({
       case "Spotify":
         getSpotifyPlaylist(id, access_token).then(res => {
           setPlaylistToConvert(res);
-          // set app level state, res = array of playlists to search with
-          history.push("/converted");
+          // res = source tracks; let the user curate them on the edit step
+          history.push("/edit");
         });
         break;
       case "Youtube":
         getYoutubePlaylist(id, access_token).then(res => {
           setPlaylistToConvert(res);
-          // set app level state, res = array of playlists to search with
-          history.push("/converted");
+          // res = source tracks; let the user curate them on the edit step
+          history.push("/edit");
         });
         break;
       case "Napster":
         getNapsterPlaylist(id, access_token).then(res => {
           setPlaylistToConvert(res);
-          // set app level state, res = array of playlists to search with
-          history.push("/converted");
+          // res = source tracks; let the user curate them on the edit step
+          history.push("/edit");
         });
         break;
       case "Deezer":
         getDeezerPlaylist(id, access_token).then(res => {
           setPlaylistToConvert(res);
-          // set app level state, res = array of playlists to search with
-          history.push("/converted");
+          // res = source tracks; let the user curate them on the edit step
+          history.push("/edit");
         });
         break;
       default:

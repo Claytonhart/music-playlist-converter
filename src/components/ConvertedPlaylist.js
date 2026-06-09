@@ -5,13 +5,14 @@ import TrackCover from "./TrackCover";
 /*
 playlist is an array of objects with keys of artistName and songName
 */
-const ConvertedPlaylist = ({ playlistUrl, playlist, platform }) => {
+const ConvertedPlaylist = ({ playlistUrl, playlist, platform, playlistName }) => {
   const tracks = playlist || [];
+  const heading = playlistName || `New ${platform} playlist`;
 
   return (
     <div className="track-list">
       <div className="track-list__head">
-        <h3>New {platform} playlist</h3>
+        <h3>{heading}</h3>
         <span>
           {tracks.length} {tracks.length === 1 ? "track" : "tracks"}
         </span>

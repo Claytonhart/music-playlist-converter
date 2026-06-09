@@ -4,7 +4,7 @@ import React from "react";
   Wizard progress for the convert flow.
   `current` is the 1-based active step (1 = Platforms, 2 = Playlist, 3 = Done).
 */
-const STEPS = ["Platforms", "Playlist", "Done"];
+const STEPS = ["Platforms", "Playlist", "Customize", "Done"];
 
 const StepIndicator = ({ current }) => {
   return (

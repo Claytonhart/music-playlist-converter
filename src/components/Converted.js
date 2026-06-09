@@ -9,7 +9,7 @@ import StepIndicator from "./StepIndicator";
   finalPlaylist is an object with key of platform name and value of access_token
   playlistToCovert is an array of objects with keys of artistName and songName
 */
-const Converted = ({ finalPlaylist, playlistToConvert }) => {
+const Converted = ({ finalPlaylist, playlistToConvert, playlistName }) => {
   const [converted, setConverted] = useState(false);
   const [playlistUrl, setPlaylistUrl] = useState(null);
 
@@ -18,7 +18,12 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
 
   useEffect(() => {
     if (playlistToConvert) {
-      createNewPlaylist(platform, playlistToConvert, access_token).then(url => {
+      createNewPlaylist(
+        platform,
+        playlistToConvert,
+        access_token,
+        playlistName
+      ).then(url => {
         setPlaylistUrl(url);
         setConverted(true);
       });
@@ -26,7 +31,7 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
       // Nothing to convert (e.g. page opened directly) — skip the loading state.
       setConverted(true);
     }
-  }, [platform, playlistToConvert, access_token]);
+  }, [platform, playlistToConvert, access_token, playlistName]);
 
   return (
     <div className="panel converted">
@@ -49,7 +54,7 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
         </div>
       ) : (
         <>
-          <StepIndicator current={3} />
+          <StepIndicator current={4} />
           <div className="converted__badge" aria-hidden="true">
             ✓
           </div>
@@ -78,6 +83,7 @@ const Converted = ({ finalPlaylist, playlistToConvert }) => {
             playlistUrl={playlistUrl}
             playlist={playlistToConvert}
             platform={platform}
+            playlistName={playlistName}
           />
         </>
       )}

@@ -1,4 +1,5 @@
 import axios from "axios";
+import matchTrack from "../../matching/matchTrack";
 
 export default async function addSongsToNapsterPlaylist(
   initialPlaylist,
@@ -27,11 +28,10 @@ export default async function addSongsToNapsterPlaylist(
 
 async function getNapsterSong(songName, artistName, accessToken) {
   const apiKey = import.meta.env.VITE_NAPSTER_API_KEY || "";
-  const songUrl = `https://api.napster.com/v2.2/search/verbose?
-		apikey=${apiKey}&
-		per_type_limit=1&
-		query=${songName} ${artistName}&
-		type=track`;
+  const query = encodeURIComponent(`${songName} ${artistName}`);
+  const songUrl =
+    `https://api.napster.com/v2.2/search/verbose?apikey=${apiKey}` +
+    `&per_type_limit=5&query=${query}&type=track`;
 
   const config = {
     headers: {
@@ -40,12 +40,14 @@ async function getNapsterSong(songName, artistName, accessToken) {
   };
 
   const request = await axios.get(songUrl, config);
+  const tracks = (request.data.search.data && request.data.search.data.tracks) || [];
+  const candidates = tracks.map(track => ({
+    id: track.id,
+    title: track.name,
+    artist: track.artistName,
+    durationMs: track.playbackSeconds ? track.playbackSeconds * 1000 : undefined
+  }));
 
-  const order = request.data.search.order;
-  let id;
-  if (order[0]) {
-    id = order[0];
-  }
-
-  return id;
+  const match = matchTrack({ songName, artistName }, candidates);
+  return match ? match.id : undefined;
 }

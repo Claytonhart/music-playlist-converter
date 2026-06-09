@@ -6,12 +6,14 @@ import Converted from "./Converted";
 import LandingPage from "./LandingPage";
 import AuthPopup from "./AuthPopup";
 import ChooseAPlaylist from "./ChooseAPlaylist";
+import EditPlaylist from "./EditPlaylist";
 
 const Main = () => {
   const [initialPlaylist, setInitialPlaylist] = useState({});
   const [finalPlaylist, setFinalPlaylist] = useState({});
 
   const [playlistToConvert, setPlaylistToConvert] = useState(null);
+  const [playlistName, setPlaylistName] = useState("");
 
   return (
     <section className="main">
@@ -39,6 +41,18 @@ const Main = () => {
             />
           )}
         />
+        <Route
+          path="/edit"
+          exact
+          render={props => (
+            <EditPlaylist
+              {...props}
+              playlistToConvert={playlistToConvert}
+              setPlaylistToConvert={setPlaylistToConvert}
+              setPlaylistName={setPlaylistName}
+            />
+          )}
+        />
         <Route path="/auth" exact component={AuthPopup} />
         <Route
           path="/converted"
@@ -48,6 +62,7 @@ const Main = () => {
               {...props}
               finalPlaylist={finalPlaylist}
               playlistToConvert={playlistToConvert}
+              playlistName={playlistName}
             />
           )}
         />
